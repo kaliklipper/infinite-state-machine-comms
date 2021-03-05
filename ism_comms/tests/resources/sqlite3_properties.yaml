@@ -1,0 +1,20 @@
+database:
+  rdbms: sqlite3
+  db_name: ism_db
+
+logging:
+  file: ism.log
+  level: debug
+  propagate: true
+
+runtime:
+  root_dir: /tmp/ism
+  use_tags: true
+  sys_tag_format: epoch_milliseconds
+  run_mode: test
+
+comms:
+  file:
+    inbound: inbound
+    outbound: outbound
+    archive: archive

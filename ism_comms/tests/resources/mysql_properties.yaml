@@ -1,0 +1,21 @@
+database:
+  rdbms: mysql
+  db_name: ism
+  host: localhost
+  user: state_admin
+
+logging:
+  file: ism.log
+  level: debug
+  propagate: true
+
+runtime:
+  root_dir: /tmp/ism
+  sys_tag_format: epoch_milliseconds
+  run_mode: test
+
+comms:
+  file:
+    inbound: inbound
+    outbound: outbound
+    archive: archive

@@ -1,0 +1,16 @@
+{
+    "mysql": {
+        "inserts": [
+            "INSERT INTO actions VALUES(NULL,'ActionIoFileBefore','STARTING','null',1)",
+            "INSERT INTO actions VALUES(NULL,'ActionIoFileInbound','RUNNING','null',0)",
+            "INSERT INTO actions VALUES(NULL,'ActionIoFileOutbound','RUNNING','null',0)"
+        ]
+    },
+    "sqlite3": {
+        "inserts": [
+            "INSERT INTO actions VALUES(NULL,'ActionIoFileBefore','STARTING','null',1)",
+            "INSERT INTO actions VALUES(NULL,'ActionIoFileInbound','RUNNING','null',0)",
+            "INSERT INTO actions VALUES(NULL,'ActionIoFileOutbound','RUNNING','null',0)"
+        ]
+    }
+}
