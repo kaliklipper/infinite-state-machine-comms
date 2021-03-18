@@ -18,3 +18,11 @@ comms:
     inbound: inbound
     outbound: outbound
     archive: archive
+    message_extension: .json
+    semaphore_extension: .smp
+
+test:
+  support:
+    inbound: /tmp/ism/test_support/inbound
+    outbound: /tmp/ism/test_support/outbound
+    archive: /tmp/ism/test_support/archive

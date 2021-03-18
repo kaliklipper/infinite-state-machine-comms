@@ -8,7 +8,7 @@ from pathlib import Path
 from ism.core.base_action import BaseAction
 
 
-class ActionIoFileBefore(BaseAction):
+class ActionBeforeIoFile(BaseAction):
     """Create the inbound and outbound directories for the file based messages
 
     Directories are defined in the properties file.
@@ -21,7 +21,7 @@ class ActionIoFileBefore(BaseAction):
 
         if self.active():
 
-            #  Get the directory paths from the properties file
+            #  Get the directory paths from the properties
             try:
                 paths = {
                     'inbound': self.properties['comms']['file']['inbound'],
@@ -29,7 +29,7 @@ class ActionIoFileBefore(BaseAction):
                     'archive': self.properties['comms']['file']['archive']
                 }
             except KeyError as e:
-                self.logger.error(f'Failed to read directory entries from properties file. KeyError ({e})')
+                self.logger.error(f'Failed to read directory entries from properties. KeyError ({e})')
                 raise
 
             # Are they relative or absolute?
@@ -43,14 +43,23 @@ class ActionIoFileBefore(BaseAction):
                 if path_type == 'Rel':
                     run_dir = self.properties["runtime"]["run_dir"]
                     sep = os.path.sep
-                    for path in paths:
-                        Path(f'{run_dir}{sep}comms{sep}file{sep}{path}').mkdir(parents=True)
+                    for name, path in paths.items():
+                        directory = f'{run_dir}{sep}comms{sep}file{sep}{path}'
+                        Path(directory).mkdir(parents=True)
+                        # Update the properties to show the absolute path now it's been resolved and created
+                        self.properties['comms']['file'][name] = directory
                 else:
                     for path in paths:
                         Path(path).mkdir(parents=True, exist_ok=True)
             except OSError as err:
                 self.logger.error(f'Error creating directory for ({path}). Error message: ({err})')
                 raise
+            except KeyError as err:
+                self.logger.error(f'Error reading key during messaging dir creation ({err}).')
+                raise
 
-            #  Job done so disable this action
+            """  Job done so disable this action. As this is a "Before" action,
+            this must happen before the ISM switches state to RUNNING or we will be 
+            stuck in the STARTING phase.
+            """
             self.deactivate()

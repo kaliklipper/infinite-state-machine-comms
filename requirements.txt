@@ -1,5 +1,5 @@
 --extra-index-url https://testpypi.python.org/pypi
-python-state-machine-kaliklipper==0.1.7
+python-state-machine-kaliklipper==0.1.11
 logger==1.4
 mysql==0.0.2
 mysql-connector-python==8.0.23

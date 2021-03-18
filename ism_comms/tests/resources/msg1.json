@@ -1,0 +1,14 @@
+{
+    "message_id": 1,
+    "sender": "test_inbound_msg_file",
+    "sender_id": 1,
+    "action": "ActionNormalShutdown",
+    "payload": {
+        "test_array": [
+            1,
+            2
+        ],
+        "test_string": "Dummy Payload"
+    },
+    "sent": "Thursday lunchtime"
+}

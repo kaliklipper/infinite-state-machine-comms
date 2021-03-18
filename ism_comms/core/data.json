@@ -1,0 +1,12 @@
+{
+    "mysql": {
+        "inserts": [
+            "INSERT INTO actions VALUES(NULL,'ActionIoCheckMsgTable','RUNNING','null',1)"
+        ]
+    },
+    "sqlite3": {
+        "inserts": [
+            "INSERT INTO actions VALUES(NULL,'ActionIoCheckMsgTable','RUNNING','null',1)"
+        ]
+    }
+}
