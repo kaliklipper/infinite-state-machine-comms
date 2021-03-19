@@ -1,0 +1,12 @@
+{
+    "mysql": {
+        "inserts": [
+            "INSERT INTO messages VALUES(NULL, 'UnitTest', 'ActionIoFileOutbound', 1,'ActionDummy', '{\"test_msg\": \"test value\"}', 12345, 0, 'outbound', 0)"
+        ]
+    },
+    "sqlite3": {
+        "inserts": [
+            "INSERT INTO messages VALUES(NULL,'UnitTest', 'ActionIoFileOutbound', 1,'ActionDummy', '{\"test_msg\": \"test value\"}', 12345, 0, 'outbound', 0)"
+        ]
+    }
+}

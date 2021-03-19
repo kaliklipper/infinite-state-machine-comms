@@ -1,4 +1,4 @@
-"""Check to see if any of the comms actions have added a message to the messages table.
+"""Check to see if any of the comms actions have added an inbound message to the messages table.
 
 If they have then enable the action addressed by the message and set its payload.
 """
@@ -17,8 +17,16 @@ class ActionIoCheckMsgTable(BaseAction):
         if self.active():
 
             # Look in the messages table
-            sql = 'SELECT message_id, action, payload FROM messages WHERE processed = 0'
-            msgs = self.dao.execute_sql_query(sql)
+            sql = self.dao.prepare_parameterised_statement(
+                'SELECT message_id, action, payload FROM messages WHERE processed = ?'
+            )
+            msgs = self.dao.execute_sql_query(
+                sql,
+                (
+                    0,
+                )
+            )
+
             for msg in msgs:
 
                 # Update the action's payload

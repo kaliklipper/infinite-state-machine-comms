@@ -41,7 +41,7 @@ class ActionIoFileInbound(BaseAction):
                 smp = self.properties['comms']['file']['semaphore_extension']
                 msg = self.properties['comms']['file']['message_extension']
             except KeyError as e:
-                self.logger.error(f'Failed to read directory entries from properties. KeyError ({e})')
+                self.logger.error(f'Failed to read [comms][file] entries from properties. KeyError ({e})')
                 raise
 
             # Are there any inbound files?
