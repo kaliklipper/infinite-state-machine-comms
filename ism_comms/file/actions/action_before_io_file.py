@@ -3,6 +3,7 @@
 # Standard library imports
 import os
 from pathlib import Path
+import secrets
 
 # Application imports
 from ism.core.base_action import BaseAction
@@ -57,6 +58,14 @@ class ActionBeforeIoFile(BaseAction):
             except KeyError as err:
                 self.logger.error(f'Error reading key during messaging dir creation ({err}).')
                 raise
+
+            # Create the security token
+            num_bytes = self.properties.get('security', {}).get('token_bytes', 16)
+            BaseAction.security_token = {
+                'token_bytes': secrets.token_bytes,
+                'token_hex': secrets.token_hex,
+                'token_urlsafe': secrets.token_urlsafe
+            }[self.properties.get('security', {}).get('token_type', 'token_hex').lower()](num_bytes)
 
             """  Job done so disable this action. As this is a "Before" action,
             this must happen before the ISM switches state to RUNNING or we will be 

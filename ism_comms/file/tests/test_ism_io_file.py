@@ -77,6 +77,9 @@ class TestIsmIoFile(unittest.TestCase):
 
         sender_id = msg['payload']['sender_id']
 
+        if not os.path.exists(self.test_inbound):
+            os.makedirs(self.test_inbound)
+
         with open(f'{self.test_inbound}{os.path.sep}{sender_id}.json', 'w') as message:
             message.write(json.dumps(msg))
         with open(f'{self.test_inbound}{os.path.sep}{sender_id}.smp', 'w') as semaphore:
@@ -249,6 +252,7 @@ class TestIsmIoFile(unittest.TestCase):
         # main thread exits, as this gives a cleaner shutdown.
         ism.stop()
 
+    # TODO Add test for relative path in properties file
     def test_inbound_msg_file_sqlite3(self):
         """Test that the ism comms action ActionIoFileInbound picks up a new message.
 

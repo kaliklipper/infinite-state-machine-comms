@@ -4,7 +4,7 @@ database:
 
 logging:
   file: ism.log
-  level: debug
+  level: info
   propagate: true
 
 runtime:
@@ -20,6 +20,12 @@ comms:
     archive: archive
     message_extension: .json
     semaphore_extension: .smp
+
+security:
+  # Using secrets package so can be one of: token_bytes, token_hex or token_urlsafe
+  token_type: token_hex
+  # Length of the token
+  token_bytes: 32
 
 test:
   support:

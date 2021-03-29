@@ -11,6 +11,10 @@
     * [x] Inbound Message Events
 - [x] Create File IO actions
 
+# Security
+- [ ] Authorisation
+    - [ ] Authorised Hosts
+  
 # Unit Tests
 - [x] File IO
 - [ ] API IO
